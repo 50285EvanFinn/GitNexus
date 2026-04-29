@@ -36,7 +36,8 @@ export function createGitHubClient(options: GitHubClientOptions): Octokit {
         console.warn(
           `Rate limit hit for ${options.method} ${options.url}. Retrying after ${retryAfter}s.`
         );
-        return true; // retry once
+        // Only retry once — if we hit the limit again, bail out
+        return (options.request as Record<string, unknown>)?.retryCount === 0;
       },
       onSecondaryRateLimit: (
         retryAfter: number,
