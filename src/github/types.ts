@@ -110,13 +110,18 @@ export interface GitHubCommit {
   html_url: string;
 }
 
-/** Options for listing pull requests */
+/**
+ * Options for listing pull requests.
+ * Note: defaulting per_page to 30 (GitHub's default) and page to 1 for predictable pagination.
+ */
 export interface ListPROptions {
   state?: 'open' | 'closed' | 'all';
   head?: string;
   base?: string;
   sort?: 'created' | 'updated' | 'popularity' | 'long-running';
   direction?: 'asc' | 'desc';
+  /** Number of results per page (max 100). Defaults to 30. */
   per_page?: number;
+  /** Page number of results to fetch. Defaults to 1. */
   page?: number;
 }
