@@ -112,7 +112,8 @@ export interface GitHubCommit {
 
 /**
  * Options for listing pull requests.
- * Note: defaulting per_page to 30 (GitHub's default) and page to 1 for predictable pagination.
+ * Note: bumped per_page default to 50 so I don't have to paginate as often
+ * when browsing my own repos. GitHub's default is 30 but max is 100.
  */
 export interface ListPROptions {
   state?: 'open' | 'closed' | 'all';
@@ -120,7 +121,7 @@ export interface ListPROptions {
   base?: string;
   sort?: 'created' | 'updated' | 'popularity' | 'long-running';
   direction?: 'asc' | 'desc';
-  /** Number of results per page (max 100). Defaults to 30. */
+  /** Number of results per page (max 100). Defaults to 50. */
   per_page?: number;
   /** Page number of results to fetch. Defaults to 1. */
   page?: number;
